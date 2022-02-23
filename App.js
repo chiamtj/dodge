@@ -1,9 +1,8 @@
 import React from "react";
-import type { Node } from "react";
 import World from "./src/World";
 
-const App: () => Node = () => {
+export default function App() {
 	return <World />;
 };
 
-export default App;
+// export default App;
