@@ -1,16 +1,15 @@
 import Matter from 'matter-js';
-import {CAR_WIDTH, CAR_HEIGHT, DEVICE_WIDTH, DEVICE_HEIGHT} from './Constants';
+import {ST_WIDTH, ST_HEIGHT, DEVICE_WIDTH, DEVICE_HEIGHT} from './Constants';
 
-import randomInt from 'random-int';
 
-export const car = Matter.Bodies.rectangle(
+export const student = Matter.Bodies.rectangle(
   0,
   DEVICE_HEIGHT - 30,
-  CAR_WIDTH,
-  CAR_HEIGHT,
+  ST_WIDTH,
+  ST_HEIGHT,
   {
     isStatic: true,
-    label: 'car',
+    label: 'student',
   },
 );
 
@@ -26,8 +25,8 @@ export const floor = Matter.Bodies.rectangle(
   },
 );
 
-export const road = Matter.Bodies.rectangle(DEVICE_WIDTH / 2, 100, 20, 100, {
+export const space = Matter.Bodies.rectangle(DEVICE_WIDTH / 2, 100, 20, 100, {
   isStatic: true,
   isSensor: false,
-  label: 'road',
+  label: 'space',
 });

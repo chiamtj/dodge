@@ -1,4 +1,4 @@
-export const OPPOSING_CAR_IMAGES = [
+export const OPPOSING_STUDENT_IMAGES = [
 	require('../assets/images/1.png'),
 	require('../assets/images/3.png'),
 	require('../assets/images/4.png'),
