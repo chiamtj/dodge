@@ -2,11 +2,9 @@ import React, {Component} from 'react';
 
 import {StyleSheet, Text, View, Alert} from 'react-native';
 
-// import {
-//   accelerometer,
-//   setUpdateIntervalForType,
-//   SensorTypes,
-// } from 'react-native-sensors';
+import {
+  Accelerometer
+} from 'expo-sensors';
 
 import Matter from 'matter-js';
 import {GameEngine} from 'react-native-game-engine';
@@ -21,6 +19,7 @@ import Road from './components/Road';
 import getRandomDecimal from './helpers/getRandomDecimal';
 
 // setUpdateIntervalForType(SensorTypes.accelerometer, 15);
+Accelerometer.setUpdateInterval(15);
 
 import {
   CAR_WIDTH,
@@ -33,6 +32,7 @@ import {
 import {OPPOSING_CAR_IMAGES} from './Images';
 
 import {car, floor, road} from './Objects';
+import { stubArray } from 'lodash';
 
 export default class World extends Component {
   state = {
@@ -54,7 +54,7 @@ export default class World extends Component {
     this.physics = (entities, {time}) => {
       let engine = entities['physics'].engine;
 
-      engine.world.gravity.y = 0.5; // .0625, .125, .25, .5, .75, 1
+      engine.world.gravity.y = 0.75; // .0625, .125, .25, .5, .75, 1
       Matter.Engine.update(engine, time.delta);
       return entities;
     };
@@ -85,34 +85,34 @@ export default class World extends Component {
       y: DEVICE_HEIGHT - 200,
     });
 
-    // this.accelerometer = accelerometer.subscribe(({x}) => {
-    //   if (!this.state.isGamePaused) {
-    //     Matter.Body.setPosition(car, {
-    //       x: this.state.x + x,
-    //       y: DEVICE_HEIGHT - 200,
-    //     });
+    this.Accelerometer = Accelerometer.addListener(({x}) => {
+      if (!this.state.isGamePaused) {
+        Matter.Body.setPosition(car, {
+          x: this.state.x + x,
+          y: DEVICE_HEIGHT - 200,
+        });
 
-    //     this.setState(
-    //       state => ({
-    //         x: x + state.x,
-    //       }),
-    //       () => {
-    //         if (this.state.x < 0 || this.state.x > DEVICE_WIDTH) {
-    //           Matter.Body.setPosition(car, {
-    //             x: MID_POINT,
-    //             y: DEVICE_HEIGHT - 30,
-    //           });
+        this.setState(
+          state => ({
+            x: state.x - x*3,
+          }),
+          () => {
+            if (this.state.x < 0 || this.state.x > DEVICE_WIDTH) {
+              Matter.Body.setPosition(car, {
+                x: MID_POINT,
+                y: DEVICE_HEIGHT - 30,
+              });
 
-    //           this.setState({
-    //             x: MID_POINT,
-    //           });
+              this.setState({
+                x: MID_POINT,
+              });
 
-    //           this.gameOver('You hit the side of the road!');
-    //         }
-    //       },
-    //     );
-    //   }
-    // });
+              this.gameOver('You hit the side of the road!');
+            }
+          },
+        );
+      }
+    });
 
     this.setState({
       isGameSetup: true,
@@ -120,9 +120,9 @@ export default class World extends Component {
   }
 
   componentWillUnmount() {
-    // if (this.accelerometer) {
-    //   this.accelerometer.stop();
-    // }
+    if (this.Accelerometer) {
+      this.Accelerometer.remove();
+    }
   }
 
   addObjectsToWorld = car => {
@@ -198,7 +198,7 @@ export default class World extends Component {
       {
         text: 'Cancel',
         onPress: () => {
-          this.accelerometer.unsubscribe();
+          this.Accelerometer.remove();
           Alert.alert(
             'Bye!',
             'Just relaunch the app if you want to play again.',
@@ -252,7 +252,7 @@ export default class World extends Component {
       playerCar: {
         body: car,
         size: [CAR_WIDTH, CAR_WIDTH],
-        image: require('../assets/images/red-car.png'),
+        image: require('../assets/images/2.png'),
         renderer: Car,
       },
 
