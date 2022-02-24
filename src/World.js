@@ -56,7 +56,7 @@ export default class World extends Component {
       return entities;
     };
 
-    this.roadTranslation = (entities, {time}) => {
+    this.spaceTranslation = (entities, {time}) => {
       if (!this.state.isGamePaused) {
         Matter.Body.setPosition(space, {
           x: space.position.x,
@@ -104,7 +104,7 @@ export default class World extends Component {
                 x: MID_POINT,
               });
 
-              this.gameOver('You hit the side of the road!');
+              this.gameOver('You just flew to Mars!!');
             }
           },
         );
@@ -175,7 +175,7 @@ export default class World extends Component {
       }
 
       if (objA === 'student' && objB === 'opposing_students') {
-        this.gameOver('You bumped to another car!');
+        this.gameOver('You bumped into another student!😫😢');
       }
     });
   };
@@ -191,14 +191,14 @@ export default class World extends Component {
       isGamePaused: true,
     });
 
-    Alert.alert(`Game Over, ${msg}`, 'Want to play again?', [
+    Alert.alert(`Game Over!!! ${msg}`, 'Want to play again?', [
       {
         text: 'Cancel',
         onPress: () => {
           this.Accelerometer.remove();
           Alert.alert(
-            'Bye!',
-            'Just relaunch the app if you want to play again.',
+            'Bye!!',
+            'Just relaunch the app if you want to play again. See Ya!!👋🏾👋🏾',
           );
         },
       },
@@ -240,13 +240,13 @@ export default class World extends Component {
         world,
       },
 
-      theRoad: {
+      theSpace: {
         body: space,
         size: [20, 100],
         renderer: Space,
       },
 
-      playerCar: {
+      playerStudent: {
         body: student,
         size: [ST_WIDTH, ST_WIDTH],
         image: require('../assets/images/2.png'),
@@ -262,14 +262,14 @@ export default class World extends Component {
     };
 
     // get unique items from array
-    const selected_car_images = sampleSize(OPPOSING_STUDENT_IMAGES, 5);
+    const selected_student_images = sampleSize(OPPOSING_STUDENT_IMAGES, 5);
 
     for (let x = 0; x <= 4; x++) {
       Object.assign(entities, {
         ['opposing_students' + x]: {
           body: this.opposing_students[x],
           size: [ST_WIDTH, ST_HEIGHT],
-          image: selected_car_images[x],
+          image: selected_student_images[x],
           renderer: Student,
         },
       });
@@ -286,7 +286,7 @@ export default class World extends Component {
         <View style={styles.container}>
         <Image source={overlay} style={styles.backgroundImage}/>
         <GameEngine
-          systems={[this.physics, this.roadTranslation]}
+          systems={[this.physics, this.spaceTranslation]}
           entities={this.entities}
         >
           <View style={styles.infoWrapper}>
