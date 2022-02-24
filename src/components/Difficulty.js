@@ -27,7 +27,7 @@ function difficultyLevel(props) {
     props.passToMain(e.target.value);
   }
 
-  return <>{retrieveDifficultyLevel()}</>;
+  return (<>{retrieveDifficultyLevel()}</>)
 }
 const styles = StyleSheet.create({
     container: {
