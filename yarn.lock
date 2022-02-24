@@ -4280,7 +4280,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.7.2":
+"prop-types@^15.6.1", "prop-types@^15.7.2":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -4353,6 +4353,18 @@
     "jscodeshift" "^0.11.0"
     "nullthrows" "^1.1.1"
 
+"react-native-dropdown-menu@^2.0.0":
+  "integrity" "sha1-HZ5mFNw3mbeeMVH4pU+y2Dx9iZ8="
+  "resolved" "https://registry.npmjs.org/react-native-dropdown-menu/-/react-native-dropdown-menu-2.0.0.tgz"
+  "version" "2.0.0"
+  dependencies:
+    "prop-types" "^15.6.1"
+
+"react-native-dropdown-picker@^5.3.0":
+  "integrity" "sha512-LUctVMAWiDir1X0WrFX1784psvqzBXRxRujYbvlvKz1Owa6cujrVN98rP356hIXFzX19E7SkbA942fGfMvoEWQ=="
+  "resolved" "https://registry.npmjs.org/react-native-dropdown-picker/-/react-native-dropdown-picker-5.3.0.tgz"
+  "version" "5.3.0"
+
 "react-native-game-engine@^1.2.0":
   "integrity" "sha512-SZwvxh0qN5HxuREL733B2VrtsadoSiN0RxulGaJu8OC3LTeliQM7whGQREtoBLo2tQ9iIzyzhiMSTzLCvmEJWg=="
   "resolved" "https://registry.npmjs.org/react-native-game-engine/-/react-native-game-engine-1.2.0.tgz"
@@ -4408,7 +4420,7 @@
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.4.3.tgz"
   "version" "0.4.3"
 
-"react@^16.8.0 || ^17.0.0", "react@>= 16.3.0", "react@17.0.1":
+"react@*", "react@^16.8.0 || ^17.0.0", "react@>= 16.3.0", "react@17.0.1":
   "integrity" "sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.1.tgz"
   "version" "17.0.1"

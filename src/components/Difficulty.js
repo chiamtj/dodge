@@ -1,39 +1,36 @@
 import { useState, useEffect } from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import { v4 as uuidv4 } from "uuid";
+import DropDownPicker from "react-native-dropdown-picker";
 
 function difficultyLevel(props) {
-
-    const [selectedValue, setSelectedValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([
+    { label: "Level 1", value: 1 },
+    { label: "Level 2", value: 2 },
+  ]);
+  useEffect(() => {}, []);
 
   async function retrieveDifficultyLevel() {
     return (
-        <View style={styles.container}>
-        <Picker
-          selectedValue={selectedValue}
-          style={{ height: 50, width: 150 }}
-          onValueChange={handleDifficultySelect}
-        >
-          <Picker.Item label="Java" value={1} />
-          <Picker.Item label="JavaScript" value={2} />
-        </Picker>
-      </View>
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={handleDifficultySelect}
+        setItems={setItems}
+      />
     );
   }
 
   function handleDifficultySelect(e) {
     e.preventDefault();
-    props.selectedDifficulty(e.target.value)
-    setSelectedValue(e.target.value)
-    props.passToMain(e.target.value);
+    props.passToMain(value);
+    props.selectedDifficulty(value);
   }
 
-  return (<>{retrieveDifficultyLevel()}</>)
+  return <>{retrieveDifficultyLevel()}</>;
 }
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 40,
-      alignItems: "center"
-    }
-  });
+
 export default difficultyLevel;
