@@ -5,7 +5,7 @@ import {DEVICE_WIDTH, DEVICE_HEIGHT} from '../Constants';
 
 const BODY_DIAMETER = Math.trunc(Math.max(DEVICE_WIDTH, DEVICE_HEIGHT) * 0.05);
 
-function Car({body, image}) {
+function Student({body, image}) {
 	const {position} = body;
 
 	const x = position.x - BODY_DIAMETER / 2;
@@ -26,4 +26,4 @@ function Car({body, image}) {
 	);
 }
 
-export default Car;
+export default Student
