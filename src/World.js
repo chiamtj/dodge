@@ -49,8 +49,8 @@ export default class World extends Component {
   renderWorld(){
     const {engine, world} = this.addObjectsToWorld(student);
     this.entities = this.getEntities(engine, world, student, space);
-    console.log("before this.physics defined");
-    console.log("gravity is now", this.props.gravity);
+    // console.log("before this.physics defined");
+    // console.log("gravity is now", this.props.gravity);
     this.physics = (entities, {time}) => {
       let engine = entities['physics'].engine;
 
@@ -85,7 +85,7 @@ export default class World extends Component {
 
   componentDidMount() {
     this.renderWorld();
-    console.log("componentDidMount");
+    // console.log("componentDidMount");
     Matter.Body.setPosition(student, {
       x: DEVICE_WIDTH / 2,
       y: DEVICE_HEIGHT - 200,
@@ -169,7 +169,7 @@ export default class World extends Component {
       var objA = pairs[0].bodyA.label;
       var objB = pairs[0].bodyB.label;
 
-      console.log(objA + ' -> ' + objB);
+      // console.log(objA + ' -> ' + objB);
 
       if (objA === 'floor' && objB === 'opposing_students') {
         Matter.Body.setPosition(pairs[0].bodyB, {
