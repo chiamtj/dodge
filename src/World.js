@@ -54,7 +54,7 @@ export default class World extends Component {
     this.physics = (entities, {time}) => {
       let engine = entities['physics'].engine;
 
-      engine.world.gravity.y = 0.75; // .0625, .125, .25, .5, .75, 1
+      engine.world.gravity.y = props.gravity; // .0625, .125, .25, .5, .75, 1
       Matter.Engine.update(engine, time.delta);
       return entities;
     };
