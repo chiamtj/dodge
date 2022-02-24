@@ -13,14 +13,14 @@ export default function App() {
   }, [difficulty]);
 
   function handleDifficultySelect(updateDifficulty) {
-    selectedDifficulty(updateDifficulty);
+   setDifficulty(updateDifficulty);
   }
   
   return (
     <View style={styles.container}>
       <DifficultyLevel
         difficultyValue={difficulty}
-        handleSetDifficulty={setDifficulty}
+        handleSetDifficulty={handleDifficultySelect}
       />
       <World gravity={difficulty} />
       </View>

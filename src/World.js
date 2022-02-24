@@ -44,14 +44,17 @@ export default class World extends Component {
     super(props);
 
     this.opposing_students = [];
+  }
 
+  renderWorld(){
     const {engine, world} = this.addObjectsToWorld(student);
     this.entities = this.getEntities(engine, world, student, space);
-
+    console.log("before this.physics defined");
+    console.log("gravity is now", this.props.gravity);
     this.physics = (entities, {time}) => {
       let engine = entities['physics'].engine;
 
-      engine.world.gravity.y = props.gravity; // .0625, .125, .25, .5, .75, 1
+      engine.world.gravity.y = this.props.gravity; // .0625, .125, .25, .5, .75, 1
       Matter.Engine.update(engine, time.delta);
       return entities;
     };
@@ -76,7 +79,13 @@ export default class World extends Component {
     this.setupCollisionHandler(engine);
   }
 
+  componentDidUpdate(){
+    this.renderWorld();
+  }
+
   componentDidMount() {
+    this.renderWorld();
+    console.log("componentDidMount");
     Matter.Body.setPosition(student, {
       x: DEVICE_WIDTH / 2,
       y: DEVICE_HEIGHT - 200,

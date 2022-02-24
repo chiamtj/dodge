@@ -4,7 +4,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 function DifficultyLevel(props) {
   const [open, setOpen] = useState(false);
-  
+
   const [items, setItems] = useState([
     { label: "Level 1", value: 1 },
     { label: "Level 2", value: 2 },
