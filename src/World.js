@@ -91,7 +91,7 @@ export default class World extends Component {
 
         this.setState(
           state => ({
-            x: state.x + x*3,
+            x: state.x + x*10,
           }),
           () => {
             if (this.state.x < 0 || this.state.x > DEVICE_WIDTH) {
@@ -240,13 +240,13 @@ export default class World extends Component {
         world,
       },
 
-      theRoad: {
+      spaceWorld: {
         body: space,
         size: [20, 100],
         renderer: Space,
       },
 
-      playerCar: {
+      player: {
         body: student,
         size: [ST_WIDTH, ST_WIDTH],
         image: require('../assets/images/2.png'),
