@@ -100,7 +100,7 @@ export default class World extends Component {
 
         this.setState(
           state => ({
-            x: state.x + x*3,
+            x: state.x + x*50,
           }),
           () => {
             if (this.state.x < 0 || this.state.x > DEVICE_WIDTH) {
@@ -137,14 +137,14 @@ export default class World extends Component {
 
     let objects = [space, student, floor];
 
-    for (let x = 0; x <= 4; x++) {
+    for (let x = 0; x <= 7; x++) {
       const opposing_students = Matter.Bodies.rectangle(
         randomInt(1, DEVICE_WIDTH - 10),
         0,
         ST_WIDTH,
         ST_HEIGHT,
         {
-          frictionAir: getRandomDecimal(0.05, 0.25),
+          frictionAir: getRandomDecimal(0.05, 0.15),
           label: 'opposing_students',
         },
       );
@@ -271,9 +271,9 @@ export default class World extends Component {
     };
 
     // get unique items from array
-    const selected_student_images = sampleSize(OPPOSING_STUDENT_IMAGES, 5);
+    const selected_student_images = sampleSize(OPPOSING_STUDENT_IMAGES, 8);
 
-    for (let x = 0; x <= 4; x++) {
+    for (let x = 0; x <= 7; x++) {
       Object.assign(entities, {
         ['opposing_students' + x]: {
           body: this.opposing_students[x],
